@@ -7,7 +7,7 @@ import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.example.asus.model.SinhVien;
+import com.example.asus.model.SanPham;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -21,7 +21,7 @@ import java.util.ArrayList;
 public class DanhSachSanPhamActivity extends AppCompatActivity {
 
     ListView lvSV;
-    ArrayAdapter<SinhVien> sanPhamArrayAdapter;
+    ArrayAdapter<SanPham> sanPhamArrayAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,13 +31,13 @@ public class DanhSachSanPhamActivity extends AppCompatActivity {
 
     private void SetControl() {
         lvSV = findViewById(R.id.lvSinhVien);
-        sanPhamArrayAdapter = new ArrayAdapter<SinhVien>(DanhSachSanPhamActivity.this,android.R.layout.simple_list_item_1);
+        sanPhamArrayAdapter = new ArrayAdapter<SanPham>(DanhSachSanPhamActivity.this,android.R.layout.simple_list_item_1);
         lvSV.setAdapter(sanPhamArrayAdapter);
         DanhSachSinhVienTask task = new DanhSachSinhVienTask();
         task.execute();
     }
 
-    class DanhSachSinhVienTask extends AsyncTask<Void,Void,ArrayList<SinhVien>>{
+    class DanhSachSinhVienTask extends AsyncTask<Void,Void,ArrayList<SanPham>>{
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -45,7 +45,7 @@ public class DanhSachSanPhamActivity extends AppCompatActivity {
 
         // hàm hứng dữ liệu trả về
         @Override
-        protected void onPostExecute(ArrayList<SinhVien> sinhViens) {
+        protected void onPostExecute(ArrayList<SanPham> sinhViens) {
             super.onPostExecute(sinhViens);
             sanPhamArrayAdapter.clear();
             sanPhamArrayAdapter.addAll(sinhViens);
@@ -57,10 +57,10 @@ public class DanhSachSanPhamActivity extends AppCompatActivity {
         }
 
         @Override
-        protected ArrayList<SinhVien> doInBackground(Void... voids) {
-            ArrayList<SinhVien> dssv = new ArrayList<>();
+        protected ArrayList<SanPham> doInBackground(Void... voids) {
+            ArrayList<SanPham> dssp = new ArrayList<>();
             try{
-                URL url = new URL("http://192.168.0.36/hocrestful/api/sinhvien");
+                URL url = new URL("http://10.117.53.175/restful/api/sanpham");
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("GET");
                 // yêu cầu trả về định dạng Json
@@ -83,22 +83,21 @@ public class DanhSachSanPhamActivity extends AppCompatActivity {
 
                 for(int i = 0 ; i<jsonArray.length();i++){
                     JSONObject jsonObject = (JSONObject) jsonArray.getJSONObject(i);
-                    int masv = jsonObject.getInt("Ma");
-                    String tensv = jsonObject.getString("Ten");
-                    //int namsinh = jsonObject.getInt("NamSinh");
-                   // int malop = jsonObject.getInt("MaLop");
-                    SinhVien sv = new SinhVien();
-                    sv.setMa(masv);
-                    sv.setTen(tensv);
-                    //sv.setNamSinh(namsinh);
-                   // sv.setMaLop(malop);
-                    dssv.add(sv);
+                    int ma = jsonObject.getInt("Ma");
+                    String ten = jsonObject.getString("Ten");
+                    int dongia = jsonObject.getInt("DonGia");
+                    SanPham sp = new SanPham();
+                    sp.setMa(ma);
+                    sp.setTen(ten);
+                    sp.setDongia(dongia);
+
+                    dssp.add(sp);
                 }
                 br.close();
             }catch (Exception ex){
                 Log.e("Lỗi",ex.toString());
             }
-            return dssv;
+            return dssp;
         }
     }
 }
