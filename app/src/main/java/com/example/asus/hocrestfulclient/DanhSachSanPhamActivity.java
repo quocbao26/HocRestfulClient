@@ -60,7 +60,7 @@ public class DanhSachSanPhamActivity extends AppCompatActivity {
         protected ArrayList<SanPham> doInBackground(Void... voids) {
             ArrayList<SanPham> dssp = new ArrayList<>();
             try{
-                URL url = new URL("http://10.117.53.175/restful/api/sanpham");
+                URL url = new URL("http://10.117.53.175/restfulspdm/api/sanpham");
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("GET");
                 // yêu cầu trả về định dạng Json

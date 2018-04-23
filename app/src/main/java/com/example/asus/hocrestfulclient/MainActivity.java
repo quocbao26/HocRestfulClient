@@ -8,23 +8,30 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button btnDssv;
+    Button btnDssp,btnDetailSP;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         SetControl();
 
-        btnDssv.setOnClickListener(new View.OnClickListener() {
+        btnDssp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this,DanhSachSanPhamActivity.class));
+            }
+        });
+        btnDetailSP.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this,ChiTietSanPhamActivity.class));
             }
         });
     }
 
 
     private void SetControl(){
-        btnDssv = findViewById(R.id.buttonListsv);
+        btnDssp = findViewById(R.id.buttonListsp);
+        btnDetailSP = findViewById(R.id.buttonDetailSp);
     }
 }

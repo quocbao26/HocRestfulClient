@@ -8,9 +8,13 @@
     tools:context="com.example.asus.hocrestfulclient.MainActivity">
 
     <Button
-        android:id="@+id/buttonListsv"
-        android:text="Danh sách sinh viên"
+        android:id="@+id/buttonListsp"
+        android:text="Danh sách sản phẩm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-
+    <Button
+        android:id="@+id/buttonDetailSp"
+        android:text="Chi tiết sản phẩm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 </LinearLayout>
