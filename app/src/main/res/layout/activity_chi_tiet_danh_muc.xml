@@ -3,40 +3,46 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.asus.hocrestfulclient.MainActivity">
+    android:layout_height="match_parent"
+    tools:context="com.example.asus.hocrestfulclient.ChiTietSanPhamActivity">
+    <TextView
+        android:textSize="24sp"
+        android:text="Nhập mã danh mục"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:id="@+id/edtInPutMaDM"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/btnXemChiTietDM"
+        android:text="Xem chi tiết"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:textSize="24sp"
+        android:text="Mã danh mục"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:id="@+id/edtMaDM"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:textSize="24sp"
+        android:text="Tên danh mục"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:id="@+id/edtTenDM"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <Button
-        android:id="@+id/buttonListsp"
-        android:text="Danh sách sản phẩm"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <Button
-        android:id="@+id/buttonDetailSp"
-        android:text="Chi tiết sản phẩm"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <Button
-        android:id="@+id/buttonListSPTheoDanhMuc"
-        android:text="Danh sách sản phẩm theo danh mục"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <Button
-        android:id="@+id/buttonListSPTheoDonGia"
-        android:text="Danh sách sản phẩm theo đơn giá"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <Button
-        android:id="@+id/btnlistDM"
-        android:textColor="#7c0bb9a5"
-        android:text="Danh sách danh mục"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <Button
-        android:id="@+id/btnlistDetailDM"
-        android:textColor="#7c0bb9a5"
-        android:text="Chi tiết danh mục"
+        android:id="@+id/btnBackDM"
+        android:text="Trở về"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 </LinearLayout>

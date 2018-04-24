@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.asus.model.DanhMuc;
 import com.example.asus.model.SanPham;
 
 import org.json.JSONObject;
@@ -18,64 +19,55 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class ChiTietSanPhamActivity extends AppCompatActivity {
-    EditText edtInputMaSP,edtMaSP,edtTenSP,edtDonGia;
-    Button btnBack,btnChiTiet;
+public class ChiTietDanhMucActivity extends AppCompatActivity {
+
+    EditText edtInPutDetailDM,edtMaDM,edtTenDM;
+    Button btnXemDetailDM,btnBackDM;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chi_tiet_san_pham);
+        setContentView(R.layout.activity_chi_tiet_danh_muc);
         SetControl();
         addEvents();
-
     }
 
     private void addEvents() {
-        btnBack.setOnClickListener(new View.OnClickListener() {
+        btnBackDM.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
             }
         });
-        btnChiTiet.setOnClickListener(new View.OnClickListener() {
+        btnXemDetailDM.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                xuLyXemChiTiet();
+                xemChiTietDanhMuc();
             }
         });
-
     }
 
-    private void xuLyXemChiTiet() {
-        ChiTietSanPhamTask task = new ChiTietSanPhamTask();
-        task.execute(edtInputMaSP.getText().toString().trim());
+    private void xemChiTietDanhMuc() {
+        ChiTietDanhMucTask task = new ChiTietDanhMucTask();
+        task.execute(edtInPutDetailDM.getText().toString().trim());
     }
 
-    private void SetControl() {
-        edtInputMaSP = findViewById(R.id.edtInPutMaSP);
-        edtMaSP = findViewById(R.id.edtMaSP);
-        edtTenSP = findViewById(R.id.edtTenSP);
-        edtDonGia = findViewById(R.id.edtGiaSP);
-        btnBack = findViewById(R.id.btnBack);
-        btnChiTiet = findViewById(R.id.btnXemChiTiet);
-    }
-
-    class ChiTietSanPhamTask extends AsyncTask<String,Void,SanPham>{
+    class ChiTietDanhMucTask extends AsyncTask<String,Void,DanhMuc>
+    {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
         }
 
         @Override
-        protected void onPostExecute(SanPham sanPham) {
-            super.onPostExecute(sanPham);
-            if(sanPham != null){
-                edtMaSP.setText(sanPham.getMa()+"");
-                edtTenSP.setText(sanPham.getTen()+"");
-                edtDonGia.setText(sanPham.getDongia()+"");
+        protected void onPostExecute(DanhMuc danhMuc) {
+            super.onPostExecute(danhMuc);
+            if(danhMuc != null){
+                edtMaDM.setText(danhMuc.getMaDanhMuc()+"");
+                edtTenDM.setText(danhMuc.getTenDanhMuc()+"");
+
             }
             else{
-                Toast.makeText(ChiTietSanPhamActivity.this, "Đọc bị lỗi", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ChiTietDanhMucActivity.this, "Đọc bị lỗi", Toast.LENGTH_SHORT).show();
             }
         }
 
@@ -85,9 +77,9 @@ public class ChiTietSanPhamActivity extends AppCompatActivity {
         }
 
         @Override
-        protected SanPham doInBackground(String... strings) {
+        protected DanhMuc doInBackground(String... strings) {
             try{
-                URL url = new URL("http://192.168.0.29/restfulspdm/api/sanpham/"+strings[0]);
+                URL url = new URL("http://192.168.0.29/restfulspdm/api/danhmuc/"+strings[0]);
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("GET");
                 connection.setRequestProperty("Content-Type","application/json;charset-UTF-8");
@@ -101,18 +93,26 @@ public class ChiTietSanPhamActivity extends AppCompatActivity {
                     builder.append(line);
                 }
                 JSONObject jsonObject = new JSONObject(builder.toString());
-                int masp = jsonObject.getInt("Ma");
-                String tensp = jsonObject.getString("Ten");
-                int dongia = jsonObject.getInt("DonGia");
-                SanPham sp = new SanPham();
-                sp.setMa(masp);
-                sp.setTen(tensp);
-                sp.setDongia(dongia);
-                return sp;
+                int madm = jsonObject.getInt("MaDanhMuc");
+                String tendm = jsonObject.getString("TenDanhMuc");
+
+                DanhMuc dm = new DanhMuc();
+                dm.setMaDanhMuc(madm);
+                dm.setTenDanhMuc(tendm);
+
+                return dm;
             }catch (Exception ex){
                 Log.e("LOI" , ex.toString());
             }
             return null;
         }
+    }
+
+    private void SetControl() {
+        edtInPutDetailDM = findViewById(R.id.edtInPutMaDM);
+        edtMaDM = findViewById(R.id.edtMaDM);
+        edtTenDM = findViewById(R.id.edtTenDM);
+        btnXemDetailDM = findViewById(R.id.btnXemChiTietDM);
+        btnBackDM = findViewById(R.id.btnBackDM);
     }
 }

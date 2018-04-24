@@ -21,7 +21,9 @@
         <activity android:name=".DanhSachSanPhamActivity" />
         <activity android:name=".ChiTietSanPhamActivity" />
         <activity android:name=".DanhSachSanPhamTheoDanhMucActivity" />
-        <activity android:name=".DanhSachSanPhamTheoDonGiaActivity"></activity>
+        <activity android:name=".DanhSachSanPhamTheoDonGiaActivity" />
+        <activity android:name=".DanhSachDanhMucActivity" />
+        <activity android:name=".ChiTietDanhMucActivity"></activity>
     </application>
 
 </manifest>

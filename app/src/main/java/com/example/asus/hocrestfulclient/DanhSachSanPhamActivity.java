@@ -33,11 +33,11 @@ public class DanhSachSanPhamActivity extends AppCompatActivity {
         lvSV = findViewById(R.id.lvSinhVien);
         sanPhamArrayAdapter = new ArrayAdapter<SanPham>(DanhSachSanPhamActivity.this,android.R.layout.simple_list_item_1);
         lvSV.setAdapter(sanPhamArrayAdapter);
-        DanhSachSinhVienTask task = new DanhSachSinhVienTask();
+        DanhSachSanPhamTask task = new DanhSachSanPhamTask();
         task.execute();
     }
 
-    class DanhSachSinhVienTask extends AsyncTask<Void,Void,ArrayList<SanPham>>{
+    class DanhSachSanPhamTask extends AsyncTask<Void,Void,ArrayList<SanPham>>{
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -45,10 +45,10 @@ public class DanhSachSanPhamActivity extends AppCompatActivity {
 
         // hàm hứng dữ liệu trả về
         @Override
-        protected void onPostExecute(ArrayList<SanPham> sinhViens) {
-            super.onPostExecute(sinhViens);
+        protected void onPostExecute(ArrayList<SanPham> sanPhams) {
+            super.onPostExecute(sanPhams);
             sanPhamArrayAdapter.clear();
-            sanPhamArrayAdapter.addAll(sinhViens);
+            sanPhamArrayAdapter.addAll(sanPhams);
         }
 
         @Override
@@ -60,7 +60,7 @@ public class DanhSachSanPhamActivity extends AppCompatActivity {
         protected ArrayList<SanPham> doInBackground(Void... voids) {
             ArrayList<SanPham> dssp = new ArrayList<>();
             try{
-                URL url = new URL("http://192.168.0.36/restfulspdm/api/sanpham");
+                URL url = new URL("http://192.168.0.29/restfulspdm/api/sanpham");
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("GET");
                 // yêu cầu trả về định dạng Json

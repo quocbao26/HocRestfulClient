@@ -8,7 +8,7 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button btnDssp,btnDetailSP,btnDsspTheoDM,btnDsspTheoDonGia;
+    Button btnDssp,btnDetailSP,btnDsspTheoDM,btnDsspTheoDonGia,btnListDM,btnListDetailDM;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +39,18 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this,DanhSachSanPhamTheoDonGiaActivity.class));
             }
         });
+        btnListDM.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this,DanhSachDanhMucActivity.class));
+        }
+        });
+        btnListDetailDM.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this,ChiTietDanhMucActivity.class));
+            }
+        });
     }
 
 
@@ -47,5 +59,7 @@ public class MainActivity extends AppCompatActivity {
         btnDetailSP = findViewById(R.id.buttonDetailSp);
         btnDsspTheoDM = findViewById(R.id.buttonListSPTheoDanhMuc);
         btnDsspTheoDonGia = findViewById(R.id.buttonListSPTheoDonGia);
+        btnListDM = findViewById(R.id.btnlistDM);
+        btnListDetailDM = findViewById(R.id.btnlistDetailDM);
     }
 }
