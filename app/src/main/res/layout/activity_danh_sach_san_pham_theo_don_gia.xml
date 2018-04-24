@@ -5,26 +5,33 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.asus.hocrestfulclient.MainActivity">
+    tools:context="com.example.asus.hocrestfulclient.DanhSachSanPhamTheoDonGiaActivity">
 
-    <Button
-        android:id="@+id/buttonListsp"
-        android:text="Danh sách sản phẩm"
+    <TextView
+        android:textSize="24sp"
+        android:text="Đơn giá MIN:"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:id="@+id/edtGiaMin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:textSize="24sp"
+        android:text="Đơn giá MAX:"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:id="@+id/edtGiaMax"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <Button
-        android:id="@+id/buttonDetailSp"
-        android:text="Chi tiết sản phẩm"
+        android:id="@+id/btnXemDSSPDonGia"
+        android:text="Xem danh sách sản phẩm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-    <Button
-        android:id="@+id/buttonListSPTheoDanhMuc"
-        android:text="Danh sách sản phẩm theo danh mục"
+    <ListView
+        android:id="@+id/lvDSSPTheoDonGia"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <Button
-        android:id="@+id/buttonListSPTheoDonGia"
-        android:text="Danh sách sản phẩm theo đơn giá"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent"></ListView>
 </LinearLayout>

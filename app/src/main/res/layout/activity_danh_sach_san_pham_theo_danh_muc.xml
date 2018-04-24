@@ -5,26 +5,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.asus.hocrestfulclient.MainActivity">
-
-    <Button
-        android:id="@+id/buttonListsp"
-        android:text="Danh sách sản phẩm"
+    tools:context="com.example.asus.hocrestfulclient.DanhSachSanPhamTheoDanhMucActivity">
+    <TextView
+        android:textSize="24sp"
+        android:text="Nhập mã danh mục"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+    <EditText
+        android:id="@+id/edtMaDM"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></EditText>
     <Button
-        android:id="@+id/buttonDetailSp"
-        android:text="Chi tiết sản phẩm"
+        android:text="Xem sản phẩm"
+        android:id="@+id/btnXemSP"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-    <Button
-        android:id="@+id/buttonListSPTheoDanhMuc"
-        android:text="Danh sách sản phẩm theo danh mục"
+    <ListView
+        android:id="@+id/lvSanPham"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <Button
-        android:id="@+id/buttonListSPTheoDonGia"
-        android:text="Danh sách sản phẩm theo đơn giá"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent"></ListView>
 </LinearLayout>

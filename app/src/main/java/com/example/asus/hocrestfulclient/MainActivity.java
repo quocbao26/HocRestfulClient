@@ -8,7 +8,7 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button btnDssp,btnDetailSP;
+    Button btnDssp,btnDetailSP,btnDsspTheoDM,btnDsspTheoDonGia;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,11 +27,25 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this,ChiTietSanPhamActivity.class));
             }
         });
+        btnDsspTheoDM.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this,DanhSachSanPhamTheoDanhMucActivity.class));
+            }
+        });
+        btnDsspTheoDonGia.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this,DanhSachSanPhamTheoDonGiaActivity.class));
+            }
+        });
     }
 
 
     private void SetControl(){
         btnDssp = findViewById(R.id.buttonListsp);
         btnDetailSP = findViewById(R.id.buttonDetailSp);
+        btnDsspTheoDM = findViewById(R.id.buttonListSPTheoDanhMuc);
+        btnDsspTheoDonGia = findViewById(R.id.buttonListSPTheoDonGia);
     }
 }

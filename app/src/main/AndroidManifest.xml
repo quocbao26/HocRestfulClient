@@ -19,7 +19,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".DanhSachSanPhamActivity" />
-        <activity android:name=".ChiTietSanPhamActivity"></activity>
+        <activity android:name=".ChiTietSanPhamActivity" />
+        <activity android:name=".DanhSachSanPhamTheoDanhMucActivity" />
+        <activity android:name=".DanhSachSanPhamTheoDonGiaActivity"></activity>
     </application>
 
 </manifest>

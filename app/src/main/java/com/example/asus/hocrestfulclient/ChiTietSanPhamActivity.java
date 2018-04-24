@@ -87,7 +87,7 @@ public class ChiTietSanPhamActivity extends AppCompatActivity {
         @Override
         protected SanPham doInBackground(String... strings) {
             try{
-                URL url = new URL("http://10.117.53.175/restfulspdm/api/sanpham/"+strings[0]);
+                URL url = new URL("http://192.168.0.36/restfulspdm/api/sanpham/"+strings[0]);
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("GET");
                 connection.setRequestProperty("Content-Type","application/json;charset-UTF-8");
