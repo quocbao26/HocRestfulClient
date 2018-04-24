@@ -23,7 +23,8 @@
         <activity android:name=".DanhSachSanPhamTheoDanhMucActivity" />
         <activity android:name=".DanhSachSanPhamTheoDonGiaActivity" />
         <activity android:name=".DanhSachDanhMucActivity" />
-        <activity android:name=".ChiTietDanhMucActivity"></activity>
+        <activity android:name=".ChiTietDanhMucActivity" />
+        <activity android:name=".ThemSanPhamActivity"></activity>
     </application>
 
 </manifest>
