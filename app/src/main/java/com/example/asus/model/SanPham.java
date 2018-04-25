@@ -1,10 +1,12 @@
 package com.example.asus.model;
 
+import java.io.Serializable;
+
 /**
  * Created by Asus on 23/04/2018.
  */
 
-public class SanPham {
+public class SanPham implements Serializable {
     private int Ma;
     private String Ten;
     private int Dongia;

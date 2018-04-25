@@ -5,43 +5,64 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:weightSum="10"
     tools:context="com.example.asus.hocrestfulclient.MainActivity">
 
     <Button
+        android:layout_weight="1"
         android:id="@+id/buttonListsp"
         android:text="Danh sách sản phẩm"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="0dp" />
     <Button
+        android:layout_weight="1"
         android:id="@+id/buttonDetailSp"
         android:text="Chi tiết sản phẩm"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="0dp" />
     <Button
+        android:layout_weight="1"
         android:id="@+id/buttonListSPTheoDanhMuc"
         android:text="Danh sách sản phẩm theo danh mục"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="0dp" />
     <Button
+        android:layout_weight="1"
         android:id="@+id/buttonListSPTheoDonGia"
         android:text="Danh sách sản phẩm theo đơn giá"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="0dp" />
     <Button
+        android:layout_weight="1"
         android:id="@+id/btnlistDM"
         android:textColor="#7c0bb9a5"
         android:text="Danh sách danh mục"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="0dp" />
     <Button
+        android:layout_weight="1"
         android:id="@+id/btnlistDetailDM"
         android:textColor="#7c0bb9a5"
         android:text="Chi tiết danh mục"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <Button
-        android:text="Thêm sản phẩm"
-        android:id="@+id/btnThemSP"
+        android:layout_height="0dp" />
+    <LinearLayout
+        android:layout_weight="1"
+        android:weightSum="2"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="0dp">
+        <Button
+            android:layout_weight="1"
+            android:text="Thêm sản phẩm"
+            android:id="@+id/btnThemSP"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+        <Button
+            android:layout_weight="1"
+            android:text="Thêm danh mục"
+            android:id="@+id/btnThemDM"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
 </LinearLayout>

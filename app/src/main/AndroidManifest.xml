@@ -24,7 +24,9 @@
         <activity android:name=".DanhSachSanPhamTheoDonGiaActivity" />
         <activity android:name=".DanhSachDanhMucActivity" />
         <activity android:name=".ChiTietDanhMucActivity" />
-        <activity android:name=".ThemSanPhamActivity"></activity>
+        <activity android:name=".ThemSanPhamActivity" />
+        <activity android:name=".ThemDanhMucActivity" />
+        <activity android:name=".SuaSanPhamActivity"></activity>
     </application>
 
 </manifest>

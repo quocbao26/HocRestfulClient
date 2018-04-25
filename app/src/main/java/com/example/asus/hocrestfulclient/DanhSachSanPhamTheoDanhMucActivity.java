@@ -1,14 +1,18 @@
 package com.example.asus.hocrestfulclient;
 
+import android.content.DialogInterface;
 import android.os.AsyncTask;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.asus.model.SanPham;
 
@@ -44,6 +48,35 @@ public class DanhSachSanPhamTheoDanhMucActivity extends AppCompatActivity {
                 xemDanhSachSanPhamTheoDanhMuc();
             }
         });
+        lvSP.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                SanPham sp = sanPhamArrayAdapter.getItem(i);
+                xuLyXoaSanPham(sp);
+                return false;
+            }
+        });
+    }
+
+    private void xuLyXoaSanPham(final SanPham sp) {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(DanhSachSanPhamTheoDanhMucActivity.this);
+        alertDialog.setTitle("Xác nhận xóa");
+        alertDialog.setMessage("Bạn có chắc chắn xóa "+sp.getTen());
+        alertDialog.setPositiveButton("Có", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                XoaSanPhamTask task = new XoaSanPhamTask();
+                task.execute(sp);
+                dialogInterface.dismiss();
+            }
+        });
+        alertDialog.setNegativeButton("Không", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+        alertDialog.create().show();
     }
 
     private void xemDanhSachSanPhamTheoDanhMuc() {
@@ -84,7 +117,7 @@ public class DanhSachSanPhamTheoDanhMucActivity extends AppCompatActivity {
         protected ArrayList<SanPham> doInBackground(String... strings) {
             ArrayList<SanPham> dssp = new ArrayList<>();
             try{
-                URL url = new URL("http://192.168.0.29/restfulspdm/api/sanpham/?madm="+strings[0]);
+                URL url = new URL("http://10.216.149.29/restfulspdm/api/sanpham/?madm="+strings[0]);
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("GET");
                 connection.setRequestProperty("Content-Type","application/json; charset-UTF-8");
@@ -114,6 +147,59 @@ public class DanhSachSanPhamTheoDanhMucActivity extends AppCompatActivity {
                 Log.e("Loi",ex.toString());
             }
             return dssp;
+        }
+    }
+
+    class XoaSanPhamTask extends AsyncTask<SanPham,Void,Boolean>
+    {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected void onPostExecute(Boolean aBoolean) {
+            super.onPostExecute(aBoolean);
+            if(aBoolean.booleanValue()==true){
+                xemDanhSachSanPhamTheoDanhMuc();
+            }else{
+                Toast.makeText(DanhSachSanPhamTheoDanhMucActivity.this, "Xóa sản phẩm thất bại", Toast.LENGTH_SHORT).show();
+            }
+        }
+
+        @Override
+        protected void onProgressUpdate(Void... values) {
+            super.onProgressUpdate(values);
+        }
+
+        @Override
+        protected Boolean doInBackground(SanPham... sanPhams) {
+            try{
+                SanPham sp =sanPhams[0];
+                String params = "?masp="+sp.getMa();
+                URL url = new URL("http://10.216.149.29/restfulspdm/api/sanpham"+params);
+
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.setRequestMethod("DELETE");
+                connection.setRequestProperty("Content-Type","application/json;charset-utf-8");
+
+                InputStreamReader inputStreamReader = new InputStreamReader(connection.getInputStream(),"UTF-8");
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                StringBuilder builder = new StringBuilder();
+                String line = null;
+                while ((line = bufferedReader.readLine()) != null)
+                {
+                    builder.append(line);
+                }
+
+                boolean kq = builder.toString().contains("true");
+                return kq;
+
+            }catch (Exception ex)
+            {
+                Log.e("loi",ex.toString());
+            }
+            return false;
         }
     }
 }

@@ -1,9 +1,12 @@
 package com.example.asus.hocrestfulclient;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -14,6 +17,7 @@ import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.io.Serializable;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
@@ -27,6 +31,23 @@ public class DanhSachSanPhamActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_danh_sach_san_pham);
         SetControl();
+        addEvents();
+    }
+
+    private void addEvents() {
+        lvSV.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                SanPham sp = sanPhamArrayAdapter.getItem(i);
+                moManHinhSuaSanPham(sp);
+            }
+        });
+    }
+
+    private void moManHinhSuaSanPham(SanPham sp) {
+        Intent intent = new Intent(DanhSachSanPhamActivity.this,SuaSanPhamActivity.class);
+        intent.putExtra("SANPHAM",sp);
+        startActivity(intent);
     }
 
     private void SetControl() {
@@ -60,7 +81,7 @@ public class DanhSachSanPhamActivity extends AppCompatActivity {
         protected ArrayList<SanPham> doInBackground(Void... voids) {
             ArrayList<SanPham> dssp = new ArrayList<>();
             try{
-                URL url = new URL("http://192.168.0.29/restfulspdm/api/sanpham");
+                URL url = new URL("http://10.216.149.29/restfulspdm/api/sanpham");
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("GET");
                 // yêu cầu trả về định dạng Json

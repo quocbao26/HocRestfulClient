@@ -72,7 +72,7 @@ public class DanhSachSanPhamTheoDonGiaActivity extends AppCompatActivity {
         protected ArrayList<SanPham> doInBackground(String... strings) {
             ArrayList<SanPham> dssp = new ArrayList<>();
             try{
-                URL url = new URL("http://192.168.0.29/restfulspdm/api/sanpham/?a="+strings[0]+"&b="+strings[1]);
+                URL url = new URL("http://10.216.149.29/restfulspdm/api/sanpham/?a="+strings[0]+"&b="+strings[1]);
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("GET");
                 connection.setRequestProperty("Content-Type","application/json;charset-UTF-8");

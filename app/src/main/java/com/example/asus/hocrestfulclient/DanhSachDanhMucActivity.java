@@ -62,7 +62,7 @@ public class DanhSachDanhMucActivity extends AppCompatActivity {
         protected ArrayList<DanhMuc> doInBackground(Void... voids) {
             ArrayList<DanhMuc> dsdm = new ArrayList<>();
             try{
-                URL url = new URL("http://192.168.0.29/restfulspdm/api/danhmuc");
+                URL url = new URL("http://10.216.149.29/restfulspdm/api/danhmuc");
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("GET");
                 connection.setRequestProperty("Content-Type","application/json; charset-utf-8");
